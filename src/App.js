@@ -48,11 +48,18 @@ const columns = [
       whiteSpace: "nowrap",
     },
   },
+  {
+    title: "Shares",
+    field: "shares",
+    headerStyle: {
+      whiteSpace: "nowrap",
+    },
+  },
 ];
 
 const options = {
   search: false,
-  selection: true,
+  // selection: true,
   filtering: true,
 
   headerStyle: {
