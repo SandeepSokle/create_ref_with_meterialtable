@@ -1,23 +1,101 @@
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
+import "./App.css";
+// import { DataGrid } from '@mui/x-data-grid';
+import { dummyTabeData } from "./dummyData/dummyTabeData";
+import { DataGrid } from "@mui/x-data-grid";
+import DataTable from "./components/Table";
+
+const columns = [
+  {
+    title: "Member ID",
+    field: "id",
+    headerStyle: {
+      whiteSpace: "nowrap",
+    },
+  },
+  {
+    title: "First Name",
+    field: "first_name",
+    headerStyle: {
+      whiteSpace: "nowrap",
+    },
+  },
+  {
+    title: "Last Name",
+    field: "last_name",
+    headerStyle: {
+      whiteSpace: "nowrap",
+    },
+  },
+  {
+    title: "Member Email",
+    field: "email",
+    headerStyle: {
+      whiteSpace: "nowrap",
+    },
+  },
+  {
+    title: "Member Gender",
+    field: "gender",
+    headerStyle: {
+      whiteSpace: "nowrap",
+    },
+  },
+  {
+    title: "Member ip_address",
+    field: "ip_address",
+    headerStyle: {
+      whiteSpace: "nowrap",
+    },
+  },
+];
+
+const options = {
+  search: false,
+  selection: true,
+  filtering: true,
+
+  headerStyle: {
+    backgroundColor: "#E7E7E7",
+    color: "#000",
+    fontWeight: "bold",
+    fontSize: 18,
+    fontFamily: "Mulish",
+    padding: "8px 5px",
+  },
+  cellStyle: {
+    padding: "10px",
+  },
+  maxBodyHeight: "60vh",
+  pageSize: 10,
+  searchFieldStyle: {
+    marginRight: "6vw",
+    width: "15vw",
+  },
+  filterCellStyle: {
+    padding: "5px 18px 5px 8px",
+  },
+};
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div style={{ height: 400, width: "100%" }}>
+        {/* <DataGrid
+        rows={dummyTabeData}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+        checkboxSelection
+      /> */}
+        <DataTable
+          // tableRef={tableRef}
+          title=""
+          columns={columns}
+          data={dummyTabeData}
+          options={options}
+        />
+      </div>
     </div>
   );
 }
