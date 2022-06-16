@@ -1,6 +1,6 @@
 // Create Ref With Meterial Table
 import * as React from "react";
-import "./App.css";
+// import "./App.css";
 import { dummyTabeData } from "./dummyData/dummyTabeData";
 import DataTable from "./components/Table";
 import Header from "./components/header";
@@ -87,9 +87,27 @@ const options = {
 function App() {
   const tableRef = React.createRef();
   return (
-    <div className="App">
+    <div
+      className="App"
+      style={{
+        padding: "1rem",
+        display: "flex",
+        flexDirection: "column",
+        // alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <Header tableRef={tableRef} />
-      <div style={{ height: 600, width: "100%" }}>
+      <div
+        style={{
+          height: 700,
+          width: "95%",
+          padding: "1rem",
+          display: "flex",
+          alignSelf: "center",
+          justifyContent: "center",
+        }}
+      >
         <DataTable
           tableRef={tableRef}
           title=""
