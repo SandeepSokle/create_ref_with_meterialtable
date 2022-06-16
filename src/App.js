@@ -1,9 +1,9 @@
+// Create Ref With Meterial Table
 import * as React from "react";
 import "./App.css";
-// import { DataGrid } from '@mui/x-data-grid';
 import { dummyTabeData } from "./dummyData/dummyTabeData";
-import { DataGrid } from "@mui/x-data-grid";
 import DataTable from "./components/Table";
+import Header from "./components/header";
 
 const columns = [
   {
@@ -85,18 +85,13 @@ const options = {
 };
 
 function App() {
+  const tableRef = React.createRef();
   return (
     <div className="App">
-      <div style={{ height: 400, width: "100%" }}>
-        {/* <DataGrid
-        rows={dummyTabeData}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
-      /> */}
+      <Header tableRef={tableRef} />
+      <div style={{ height: 600, width: "100%" }}>
         <DataTable
-          // tableRef={tableRef}
+          tableRef={tableRef}
           title=""
           columns={columns}
           data={dummyTabeData}
