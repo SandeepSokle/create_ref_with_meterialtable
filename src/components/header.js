@@ -9,10 +9,14 @@ import Typography from "@mui/material/Typography";
 // import MenuIcon from "@mui/icons-material/Menu";
 // import SearchIcon from "@mui/icons-material/Search";
 import CustomSearch from "./CustomSearch";
-import { forwardRef } from "react";
-
+import { forwardRef, useEffect } from "react";
+import { Button, Stack } from "@mui/material";
+import { CSVLink, CSVDownload } from "react-csv";
+import DownloadIcon from "@mui/icons-material/Download";
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
+  display: "flex",
+  flexDirection: "row",
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   "&:hover": {
@@ -57,12 +61,33 @@ export const Header = forwardRef((props, ref) => {
   const {
     data,
     // tableRef,
-    setOptionVal,
     tableData,
     setTableData,
-    // rangeSearchCol,
+    completeData,
     columns,
   } = props;
+
+  console.log(ref?.current?.state?.data);
+
+
+  const handleDownload = (type) => {
+    let localData = type === "all" ? completeData : ref.current.state.data;
+    console.log(localData);
+    let newData = localData.map((ele) => {
+      return `${ele.id},${ele.first_name},${ele.last_name},${ele.email},${ele.gender},${ele.ip_address},${ele.shares}`;
+    });
+    let finalData = [
+      `"Member ID","First Name","Last Name","Member Email","Member Gender","Member ip_address","Shares"`,
+      ...newData,
+    ].join("\n");
+    let hiddenElement = document.createElement("a");
+    hiddenElement.href =
+      "data:text/csv;charset=utf-8," + encodeURIComponent(finalData);
+    hiddenElement.target = "_blank";
+    hiddenElement.download = `ss_${type}_data.csv`;
+    hiddenElement.click();
+  };
+
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "#1976d2!important" }}>
       <AppBar position="static">
@@ -83,6 +108,54 @@ export const Header = forwardRef((props, ref) => {
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           ></Typography>
           <Search>
+            <Stack
+              direction="row"
+              spacing={2}
+              sx={{
+                margin: "0rem 1rem",
+              }}
+            >
+              <Button
+                variant="contained"
+                style={{
+                  backgroundColor: "rgb(25 118 210)",
+                  padding: ".2rem 1rem",
+                  borderRadius: "4px",
+                  color: "white",
+                }}
+                onClick={() => {
+                  handleDownload("all");
+                }}
+              >
+                Complete{" "}
+                <DownloadIcon
+                  sx={{
+                    marginLeft: ".5rem",
+                  }}
+                ></DownloadIcon>
+              </Button>
+              <Button
+                style={{
+                  backgroundColor: "rgb(25 118 210)",
+                  padding: ".2rem 1rem",
+                  borderRadius: "4px",
+                  color: "white",
+                }}
+                variant="contained"
+                onClick={() => {
+                  handleDownload("table");
+                }}
+              >
+                Table{" "}
+                <DownloadIcon
+                  sx={{
+                    marginLeft: ".5rem",
+                  }}
+                ></DownloadIcon>
+              </Button>
+              {/* <CSVLink data={completeData}>Normal</CSVLink>
+              <CSVLink data={ref?.current?.state?.data || []}>createRf</CSVLink> */}
+            </Stack>
             {/* <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -93,11 +166,11 @@ export const Header = forwardRef((props, ref) => {
             <CustomSearch
               data={data || []}
               ref={ref}
-              setOptionVal={setOptionVal}
               tableData={tableData}
               setTableData={setTableData}
               rangeSearchCol={[["Shares", "shares"]]}
               columns={columns}
+              completeData={completeData}
             />
           </Search>
         </Toolbar>

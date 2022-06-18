@@ -84,17 +84,19 @@ const options = {
     padding: "5px 18px 5px 8px",
   },
   // pageSizeOptions:[10,25,50,100]
-
 };
 
 function App() {
   const tableRef = createRef();
-  const [optionVal, setOptionVal] = useState("All Members");
   const [finalData, setFinalData] = useState(null);
 
   useEffect(() => {
     setFinalData(dummyTabeData);
   }, [dummyTabeData]);
+
+  console.log(tableRef);
+
+  useEffect(() => {}, [finalData]);
 
   return (
     <div
@@ -111,11 +113,11 @@ function App() {
         data={dummyTabeData || []}
         tableRef={tableRef}
         ref={tableRef}
-        setOptionVal={setOptionVal}
         tableData={finalData}
         setTableData={setFinalData}
         rangeSearchCol={[["Shares", "shares"]]}
         columns={columns}
+        completeData={dummyTabeData}
       />
       <div
         style={{
@@ -128,7 +130,7 @@ function App() {
         }}
       >
         <DataTable
-          tableRef={tableRef}
+          ref={tableRef}
           title=""
           columns={columns}
           data={finalData}

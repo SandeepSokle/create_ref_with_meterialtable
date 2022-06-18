@@ -1,5 +1,5 @@
 import MaterialTable from "material-table";
-import React, { forwardRef } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import AddBox from "@material-ui/icons/AddBox";
 import ArrowDownward from "@material-ui/icons/ArrowDownward";
 import Check from "@material-ui/icons/Check";
@@ -18,7 +18,6 @@ import ViewColumn from "@material-ui/icons/ViewColumn";
 import { createTheme } from "@mui/material";
 import { MuiThemeProvider } from "@material-ui/core";
 import createBreakpoints from "@material-ui/core/styles/createBreakpoints";
-
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -44,9 +43,9 @@ const tableIcons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
 };
 
-const DataTable = (props) => {
-  const {  tableRef } = props;
-
+const DataTable = forwardRef((props, ref) => {
+  const { tableRef } = props;
+  const [tableNewData, setTableNewData] = useState([]);
   const breakpoints = createBreakpoints({});
 
   const theme = createTheme({
@@ -70,18 +69,18 @@ const DataTable = (props) => {
     },
   });
 
-  // React.useEffect(() => {
-  //   props.tableRef &&
-  //     props.tableRef.current &&
-  //     props.tableRef.current.onQueryChange();
-  // }, []);
+  // console.log(props.data);
+
+  // useEffect(() => {
+  //   // setTableNewData(props.data);
+  // }, [props.data]);
 
   return (
     <MuiThemeProvider theme={theme}>
       <MaterialTable
-        ref={tableRef}
+        ref={ref}
         icons={tableIcons}
-        tableRef={tableRef}
+        tableRef={ref}
         title={props.title}
         columns={props.columns}
         data={props.data}
@@ -89,13 +88,8 @@ const DataTable = (props) => {
         onSearchChange={(ele) => {
           console.log("In table : ", ele);
         }}
-       
-       
       />
-      
-     
     </MuiThemeProvider>
   );
-};
+});
 export default DataTable;
-
