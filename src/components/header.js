@@ -122,6 +122,7 @@ export const Header = forwardRef((props, ref) => {
                   padding: ".2rem 1rem",
                   borderRadius: "4px",
                   color: "white",
+                  textTransform :"capitalize"
                 }}
                 onClick={() => {
                   handleDownload("all");
@@ -140,13 +141,14 @@ export const Header = forwardRef((props, ref) => {
                   padding: ".2rem 1rem",
                   borderRadius: "4px",
                   color: "white",
+                  textTransform :"capitalize"
                 }}
                 variant="contained"
                 onClick={() => {
                   handleDownload("table");
                 }}
               >
-                Table{" "}
+                Table craeteRef{" "}
                 <DownloadIcon
                   sx={{
                     marginLeft: ".5rem",

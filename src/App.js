@@ -89,14 +89,16 @@ const options = {
 function App() {
   const tableRef = createRef();
   const [finalData, setFinalData] = useState(null);
-
+  const [conflict, setConflict] = useState(false);
   useEffect(() => {
     setFinalData(dummyTabeData);
   }, [dummyTabeData]);
 
-  console.log(tableRef);
-
-  useEffect(() => {}, [finalData]);
+  useEffect(() => {
+    console.log(finalData);
+    tableRef.current.state.data = finalData;
+    setConflict(!conflict);
+  }, [finalData]);
 
   return (
     <div

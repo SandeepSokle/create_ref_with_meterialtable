@@ -46,7 +46,7 @@ const CustomSearch = forwardRef((props, ref) => {
     console.log(e);
     setValue(e);
   };
-  console.log(ref.current);
+ 
 
   const handleUpdate = (type) => {
     console.log(ref.current.state.data);
