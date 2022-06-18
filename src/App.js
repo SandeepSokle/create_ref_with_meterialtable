@@ -1,9 +1,10 @@
 // Create Ref With Meterial Table
-import * as React from "react";
+// import * as React from "react";
 // import "./App.css";
 import { dummyTabeData } from "./dummyData/dummyTabeData";
 import DataTable from "./components/Table";
-import Header from "./components/header";
+import { Header } from "./components/header";
+import { createRef, useEffect, useState } from "react";
 
 const columns = [
   {
@@ -82,10 +83,19 @@ const options = {
   filterCellStyle: {
     padding: "5px 18px 5px 8px",
   },
+  // pageSizeOptions:[10,25,50,100]
+
 };
 
 function App() {
-  const tableRef = React.createRef();
+  const tableRef = createRef();
+  const [optionVal, setOptionVal] = useState("All Members");
+  const [finalData, setFinalData] = useState(null);
+
+  useEffect(() => {
+    setFinalData(dummyTabeData);
+  }, [dummyTabeData]);
+
   return (
     <div
       className="App"
@@ -97,7 +107,16 @@ function App() {
         justifyContent: "center",
       }}
     >
-      <Header tableRef={tableRef} />
+      <Header
+        data={dummyTabeData || []}
+        tableRef={tableRef}
+        ref={tableRef}
+        setOptionVal={setOptionVal}
+        tableData={finalData}
+        setTableData={setFinalData}
+        rangeSearchCol={[["Shares", "shares"]]}
+        columns={columns}
+      />
       <div
         style={{
           height: 700,
@@ -112,7 +131,7 @@ function App() {
           tableRef={tableRef}
           title=""
           columns={columns}
-          data={dummyTabeData}
+          data={finalData}
           options={options}
         />
       </div>
