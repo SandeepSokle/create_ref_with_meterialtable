@@ -89,7 +89,6 @@ const options = {
 function App() {
   const tableRef = createRef();  //call and store in a variable
   const [finalData, setFinalData] = useState(null);
-  const [conflict, setConflict] = useState(false);
   useEffect(() => {
     setFinalData(dummyTabeData);
   }, [dummyTabeData]);
