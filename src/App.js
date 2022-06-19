@@ -4,7 +4,7 @@
 import { dummyTabeData } from "./dummyData/dummyTabeData";
 import DataTable from "./components/Table";
 import { Header } from "./components/header";
-import { createRef, useEffect, useState } from "react";
+import { createRef, useEffect, useState } from "react"; //import 
 
 const columns = [
   {
@@ -87,7 +87,7 @@ const options = {
 };
 
 function App() {
-  const tableRef = createRef();
+  const tableRef = createRef();  //call and store in a variable
   const [finalData, setFinalData] = useState(null);
   const [conflict, setConflict] = useState(false);
   useEffect(() => {
