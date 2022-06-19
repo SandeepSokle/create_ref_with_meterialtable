@@ -4,7 +4,7 @@
 import { dummyTabeData } from "./dummyData/dummyTabeData";
 import DataTable from "./components/Table";
 import { Header } from "./components/header";
-import { createRef, useEffect, useState } from "react"; //import 
+import { createRef, useState } from "react"; //import 
 
 const columns = [
   {
