@@ -88,11 +88,11 @@ const options = {
 
 function App() {
   const tableRef = createRef();  //call and store in a variable
-  const [finalData, setFinalData] = useState(null);
-  
-  useEffect(() => {
-    setFinalData(dummyTabeData);
-  }, [dummyTabeData]);
+  const [finalData, setFinalData] = useState(dummyTabeData);
+
+  // useEffect(() => {
+  //   setFinalData(dummyTabeData);
+  // }, [dummyTabeData]);
 
 
   return (
