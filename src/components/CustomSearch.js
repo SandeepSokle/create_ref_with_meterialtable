@@ -39,7 +39,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const CustomSearch = forwardRef((props, ref) => {
-  const { data, completeData, setTableData } = props;
+  const {  completeData, setTableData } = props;
   const [value, setValue] = useState("");
 
   const handleChange = (e) => {

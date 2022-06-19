@@ -94,11 +94,6 @@ function App() {
     setFinalData(dummyTabeData);
   }, [dummyTabeData]);
 
-  useEffect(() => {
-    console.log(finalData);
-    tableRef.current.state.data = finalData;
-    setConflict(!conflict);
-  }, [finalData]);
 
   return (
     <div

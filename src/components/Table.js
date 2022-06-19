@@ -44,8 +44,7 @@ const tableIcons = {
 };
 
 const DataTable = forwardRef((props, ref) => {
-  const { tableRef } = props;
-  const [tableNewData, setTableNewData] = useState([]);
+  
   const breakpoints = createBreakpoints({});
 
   const theme = createTheme({
