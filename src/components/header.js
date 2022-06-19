@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 // import MenuIcon from "@mui/icons-material/Menu";
 // import SearchIcon from "@mui/icons-material/Search";
 import CustomSearch from "./CustomSearch";
-import { forwardRef, useEffect } from "react";
+import { forwardRef } from "react";
 import { Button, Stack } from "@mui/material";
 import DownloadIcon from "@mui/icons-material/Download";
 const Search = styled("div")(({ theme }) => ({
